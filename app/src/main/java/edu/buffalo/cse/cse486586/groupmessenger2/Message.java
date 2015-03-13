@@ -1,6 +1,7 @@
 package edu.buffalo.cse.cse486586.groupmessenger2;
 
 import java.util.Comparator;
+import java.util.HashSet;
 
 /**
  * Created by rakesh on 3/11/15.
@@ -14,7 +15,7 @@ public class Message implements Comparable<Message>{
     private boolean deliver;
     private int maxProp;
     private int proposedBy;
-    private int repliesReceived;
+    private HashSet<String> repliesReceived;
 
     public Message() {
         this.messageId = 0;
@@ -23,7 +24,7 @@ public class Message implements Comparable<Message>{
         this.deliver = false;
         this.maxProp = 0;
         this.proposedBy = 0;
-        this.repliesReceived = 0;
+        this.repliesReceived = new HashSet<>();
     }
 
     @Override
@@ -44,7 +45,7 @@ public class Message implements Comparable<Message>{
     }
 
     public enum MessageType {
-        MSG, PROPOSAL, DECISION
+        MSG, PROPOSAL, DECISION, FAILED
     }
 
     public int getMessageId() {
@@ -103,11 +104,11 @@ public class Message implements Comparable<Message>{
         this.proposedBy = proposedBy;
     }
 
-    public int getRepliesReceived() {
+    public HashSet<String> getRepliesReceived() {
         return repliesReceived;
     }
 
-    public void setRepliesReceived(int repliesReceived) {
+    public void setRepliesReceived(HashSet<String> repliesReceived) {
         this.repliesReceived = repliesReceived;
     }
 
@@ -120,7 +121,7 @@ public class Message implements Comparable<Message>{
         this.deliver = false;
         this.maxProp = 0;
         this.proposedBy = 0;
-        this.repliesReceived = 0;
+        this.repliesReceived = new HashSet<>();
     }
 
     public Message(int messageId, int processId, MessageType messageType, String message) {
@@ -131,7 +132,7 @@ public class Message implements Comparable<Message>{
         this.deliver = false;
         this.maxProp = 0;
         this.proposedBy = 0;
-        this.repliesReceived = 0;
+        this.repliesReceived = new HashSet<>();
     }
 
 
