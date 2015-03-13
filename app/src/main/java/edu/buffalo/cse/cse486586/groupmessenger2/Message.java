@@ -6,7 +6,7 @@ import java.util.Comparator;
  * Created by rakesh on 3/11/15.
  */
 
-public class Message implements Comparator<Message>{
+public class Message implements Comparable<Message>{
     private int messageId;
     private int processId;
     private String message;
@@ -26,18 +26,16 @@ public class Message implements Comparator<Message>{
         this.repliesReceived = 0;
     }
 
-
-
     @Override
-    public int compare(Message lhs, Message rhs) {
-        if (lhs.getMaxProp() < rhs.getMaxProp()){
+    public int compareTo(Message rhs) {
+        if (this.getMaxProp() < rhs.getMaxProp()){
             return  -1;
-        }else if(lhs.getMaxProp() > rhs.getMaxProp()){
+        }else if(this.getMaxProp() > rhs.getMaxProp()){
             return 1;
         }else{
-            if (lhs.getProposedBy() < rhs.getProposedBy()){
+            if (this.getProposedBy() > rhs.getProposedBy()){
                 return -1;
-            }else if (lhs.getProposedBy() > rhs.getProposedBy()) {
+            }else if (this.getProposedBy() < rhs.getProposedBy()) {
                 return 1;
             }else {
                 return 0;
@@ -145,4 +143,10 @@ public class Message implements Comparator<Message>{
         return stringRep;
     }
 
+    @Override
+    public String toString() {
+        String stringRep = this.maxProp+"-"+
+                this.processId;
+        return stringRep;
+    }
 }

@@ -24,7 +24,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * GroupMessengerActivity is the main Activity for the assignment.
@@ -38,17 +39,18 @@ public class GroupMessengerActivity extends Activity {
     static final String[] remotes = {"11108","11112","11116","11120","11124"};
     static int counter = 0;
     static final int SERVER_PORT = 10000;
+    static int numLiveNodes = 5;
 
     private int myId=0;
     private int msgSq=1;
     private int maxProp =0;
-    private PriorityQueue<Message> pQueue;
     private ArrayList<Message> pList;
 
     public static void sendMessage(int port, String msgToSend){
 
         try {
             Socket socket = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}),port);
+
             OutputStream os = socket.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
@@ -62,22 +64,8 @@ public class GroupMessengerActivity extends Activity {
 
     }
 
-    public ArrayList<Message> deliverInQueue(){
-        ArrayList<Message> delivered = new ArrayList<>();
-        while (true){
-            Message msg = pQueue.peek();
-            if (msg != null && msg.isDeliver() == true){
-                pQueue.poll();
-                delivered.add(msg);
-            }else{
-                break;
-            }
-        }
-        return delivered;
-    }
-
     private Message getMessageWithMessage(Message msg){
-        for (Message tempObj : pQueue) {
+        for (Message tempObj : pList) {
             if (tempObj.getMessageId() == msg.getMessageId()) {
                 if (tempObj.getProcessId() == msg.getProcessId()) {
                     return tempObj;
@@ -105,7 +93,7 @@ public class GroupMessengerActivity extends Activity {
         String portStr = tel.getLine1Number().substring(tel.getLine1Number().length() - 4);
         final String myPort = String.valueOf((Integer.parseInt(portStr) * 2));
         myId = idFromPort(Integer.parseInt(myPort));
-        pQueue = new PriorityQueue<>(100,new Message());
+        pList = new ArrayList<>();
 
         /** Send on click **/
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
@@ -149,7 +137,7 @@ public class GroupMessengerActivity extends Activity {
         protected Void doInBackground(String... msgs) {
             String msgToSend = msgs[0];
             Message msgObj = new Message(msgSq, myId, Message.MessageType.MSG, msgToSend);
-            pQueue.add(msgObj);
+            pList.add(msgObj);
             for (int i=0; i<5;i++){
                 GroupMessengerActivity.sendMessage(Integer.parseInt(remotes[i]),
                         msgObj.stringify());
@@ -176,70 +164,15 @@ public class GroupMessengerActivity extends Activity {
                     Message msgObj = new Message(msgStr);
                     switch (msgObj.getMessageType()){
                         case MSG:{
-                            maxProp++;
-                            Message ownObj = getMessageWithMessage(msgObj);
-                            if (ownObj == null){
-                                pQueue.add(msgObj);
-                            }
-                            String proposalString = Integer.toString(maxProp)+"-"+
-                                    Integer.toString(myId);
-                            Message propMsg = new Message(msgObj.getMessageId(),
-                                    msgObj.getProcessId(), Message.MessageType.PROPOSAL,
-                                    proposalString);
-                            GroupMessengerActivity.sendMessage(
-                                    Integer.parseInt(remotes[msgObj.getProcessId()]) ,
-                                    propMsg.stringify());
+                            sendProposed(msgObj);
                             break;
                         }
                         case PROPOSAL:{
-                            Message ownObj = getMessageWithMessage(msgObj);
-                            ownObj.setRepliesReceived( ownObj.getRepliesReceived() +1);
-                            String[] proposal = msgObj.getMessage().split("-");
-                            int propNum = Integer.parseInt(proposal[0]);
-                            if (propNum>ownObj.getMaxProp()){
-                                ownObj.setMaxProp(propNum);
-                                ownObj.setProposedBy(Integer.parseInt(proposal[1]));
-                            }
-                            if (ownObj.getRepliesReceived() == 5 ){
-                                String decisionString = Integer.toString(ownObj.getMaxProp())+"-"+
-                                        Integer.toString(ownObj.getProposedBy());
-                                Message decObj = new Message(msgObj.getMessageId(),
-                                        msgObj.getProcessId(),
-                                        Message.MessageType.DECISION,decisionString);
-                                for (int i=0;i<5;i++){
-                                    GroupMessengerActivity.sendMessage(
-                                            Integer.parseInt(remotes[i]),
-                                            decObj.stringify());
-                                }
-                            }
+                            sendDecided(msgObj);
                             break;
                         }
                         case DECISION:{
-                            String[] decisionStr = msgObj.getMessage().split("-");
-                            int maxPropDec = Integer.parseInt(decisionStr[0]);
-                            if(maxPropDec > maxProp){
-                                maxProp = maxPropDec;
-                            }
-
-                            int maxProposedBy = Integer.parseInt(decisionStr[1]);
-                            Message ownObj = getMessageWithMessage(msgObj);
-                            boolean removed = pQueue.remove(ownObj);
-                            if (!removed){
-                                Log.d("DecElem","Not removed");
-                            }
-                            ownObj.setMaxProp(maxPropDec);
-                            ownObj.setProposedBy(maxProposedBy);
-                            ownObj.setDeliver(true);
-                            pQueue.add(ownObj);
-                            ArrayList<Message> delivered = deliverInQueue();
-                            for (int i = 0; i < delivered.size();i++    ){
-                                Message delivObj = delivered.get(i);
-                                String debugStr = delivObj.getMessage()+" for: "+
-                                        Integer.toString(delivObj.getMessageId())+" "+
-                                        Integer.toString(delivObj.getProcessId());
-                                Log.d("Delivering",debugStr);
-                                publishProgress(delivered.get(i).getMessage());
-                            }
+                            decideAndDeliver(msgObj);
                             break;
                         }
                         default:
@@ -261,7 +194,86 @@ public class GroupMessengerActivity extends Activity {
             remoteTextView.append("\n\t\t\t\t"+strReceived + "\n");
             writeToDisk(strReceived);
         }
+        public synchronized void sendProposed(Message msgObj){
+            maxProp++;
+            Message ownObj = getMessageWithMessage(msgObj);
+            if (ownObj == null){
+                pList.add(msgObj);
+            }
+            String proposalString = Integer.toString(maxProp)+"-"+
+                    Integer.toString(myId);
+            Message propMsg = new Message(msgObj.getMessageId(),
+                    msgObj.getProcessId(), Message.MessageType.PROPOSAL,
+                    proposalString);
+            GroupMessengerActivity.sendMessage(
+                    Integer.parseInt(remotes[msgObj.getProcessId()]) ,
+                    propMsg.stringify());
+        }
+        public synchronized void sendDecided(Message msgObj){
+            Message ownObj = getMessageWithMessage(msgObj);
+            ownObj.setRepliesReceived( ownObj.getRepliesReceived() +1);
+            String[] proposal = msgObj.getMessage().split("-");
+            int propNum = Integer.parseInt(proposal[0]);
+            if (propNum>ownObj.getMaxProp()){
+                ownObj.setMaxProp(propNum);
+                ownObj.setProposedBy(Integer.parseInt(proposal[1]));
+            }
+            if (ownObj.getRepliesReceived() == numLiveNodes){
+                String decisionString = Integer.toString(ownObj.getMaxProp())+"-"+
+                        Integer.toString(ownObj.getProposedBy());
+                Message decObj = new Message(msgObj.getMessageId(),
+                        msgObj.getProcessId(),
+                        Message.MessageType.DECISION,decisionString);
+                for (int i=0;i<5;i++){
+                    GroupMessengerActivity.sendMessage(
+                            Integer.parseInt(remotes[i]),
+                            decObj.stringify());
+                }
+            }
+        }
+        public synchronized void decideAndDeliver(Message msgObj){
+            String[] decisionStr = msgObj.getMessage().split("-");
+            int maxPropDec = Integer.parseInt(decisionStr[0]);
+            if(maxPropDec > maxProp){
+                maxProp = maxPropDec;
+            }
 
+            int maxProposedBy = Integer.parseInt(decisionStr[1]);
+            Message ownObj = getMessageWithMessage(msgObj);
+            ownObj.setMaxProp(maxPropDec);
+            ownObj.setProposedBy(maxProposedBy);
+            ownObj.setDeliver(true);
+
+            String debugStr1 = msgObj.getMessage()+" for: "+
+                    Integer.toString(msgObj.getMessageId())+" "+
+                    Integer.toString(msgObj.getProcessId());
+//            Log.d("Deciding",debugStr1);
+            Log.d("Deciding",pList.toString());
+
+            Collections.sort(pList);
+            Iterator<Message> iter = pList.iterator();
+            while (iter.hasNext()){
+                Message delivObj = iter.next();
+                if (delivObj.isDeliver()){
+                    String debugStr = delivObj.getMessage()+" for: "+
+                            Integer.toString(delivObj.getMessageId())+" "+
+                            Integer.toString(delivObj.getProcessId());
+//                    Log.d("Delivering",debugStr);
+                    Log.d("Delivering",delivObj.toString());
+                    Log.d("Delivering",pList.toString());
+
+                    publishProgress(delivObj.getMessage());
+                    iter.remove();
+                }else{
+                    break;
+                }
+            }
+
+//            for (int i = 0; i < pList.size();i++){
+//                Message delivObj = pList.get(i);
+//
+//            }
+        }
         public synchronized void writeToDisk(String strReceived){
             Uri.Builder uriBuilder = new Uri.Builder();
             uriBuilder.authority("edu.buffalo.cse.cse486586.groupmessenger2.provider");
