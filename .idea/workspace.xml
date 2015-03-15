@@ -42,30 +42,19 @@
       <file leaf-file-name="GroupMessengerActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.5482546" vertical-offset="2464" max-vertical-offset="6120">
-              <caret line="114" column="31" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.33199194" vertical-offset="1935" max-vertical-offset="4950">
+              <caret line="238" column="73" selection-start-line="238" selection-start-column="73" selection-end-line="238" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1667#1668#0" expanded="true" />
-                <element signature="e#1704#1705#0" expanded="true" />
-                <element signature="method#getMessageWithMessage#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="method#writeToDisk#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="method#cleanup#0;class#GroupMessengerActivity#0" expanded="true" />
+                <element signature="method#sendMessage#0;class#GroupMessengerActivity#0" expanded="true" />
                 <element signature="method#sendDecision#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="method#onCreate#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="e#6599#7233#0" expanded="true" />
-                <element signature="e#7222#7223#0" expanded="true" />
-                <element signature="method#onCreateOptionsMenu#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="e#8596#9699#0" expanded="true" />
-                <element signature="e#9680#9681#0" expanded="true" />
                 <element signature="method#doInBackground#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
                 <element signature="method#handleMessage#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
-                <element signature="e#12048#13263#0" expanded="true" />
-                <element signature="e#13248#13249#0" expanded="true" />
                 <element signature="method#handleProposal#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
                 <element signature="method#handleDecision#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
                 <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
+                <element signature="method#doInBackground#0;class#SendDecisionTask#0;class#GroupMessengerActivity#0" expanded="true" />
+                <element signature="method#doInBackground#0;class#SendMessageTask#0;class#GroupMessengerActivity#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1617,13 +1606,13 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39826304" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42059553" sideWeight="0.57081544" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42059553" sideWeight="0.57153076" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42059553" sideWeight="0.42846924" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31637716" sideWeight="0.42846924" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1631,7 +1620,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19384836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3287841" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287841" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38189533" sideWeight="0.6244635" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1681,26 +1670,15 @@
           <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1704#1705#0" expanded="true" />
-            <element signature="method#getMessageWithMessage#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#writeToDisk#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#cleanup#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#sendMessage#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#sendDecision#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#onCreate#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#6599#7233#0" expanded="true" />
-            <element signature="e#7222#7223#0" expanded="true" />
-            <element signature="method#onCreateOptionsMenu#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#8596#9699#0" expanded="true" />
-            <element signature="e#9680#9681#0" expanded="true" />
             <element signature="method#doInBackground#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#handleMessage#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#12048#13263#0" expanded="true" />
-            <element signature="e#13248#13249#0" expanded="true" />
             <element signature="method#handleProposal#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#handleDecision#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#doInBackground#0;class#SendDecisionTask#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#doInBackground#0;class#SendMessageTask#0;class#GroupMessengerActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1734,26 +1712,15 @@
           <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1704#1705#0" expanded="true" />
-            <element signature="method#getMessageWithMessage#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#writeToDisk#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#cleanup#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#sendMessage#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#sendDecision#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#onCreate#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#6599#7233#0" expanded="true" />
-            <element signature="e#7222#7223#0" expanded="true" />
-            <element signature="method#onCreateOptionsMenu#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#8596#9699#0" expanded="true" />
-            <element signature="e#9680#9681#0" expanded="true" />
             <element signature="method#doInBackground#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#handleMessage#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#12048#13263#0" expanded="true" />
-            <element signature="e#13248#13249#0" expanded="true" />
             <element signature="method#handleProposal#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#handleDecision#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#doInBackground#0;class#SendDecisionTask#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#doInBackground#0;class#SendMessageTask#0;class#GroupMessengerActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2091,30 +2058,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5482546" vertical-offset="2464" max-vertical-offset="6120">
-          <caret line="114" column="31" selection-start-line="114" selection-start-column="31" selection-end-line="114" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.33199194" vertical-offset="1935" max-vertical-offset="4950">
+          <caret line="238" column="73" selection-start-line="238" selection-start-column="73" selection-end-line="238" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1667#1668#0" expanded="true" />
-            <element signature="e#1704#1705#0" expanded="true" />
-            <element signature="method#getMessageWithMessage#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#writeToDisk#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#cleanup#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#sendMessage#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#sendDecision#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#onCreate#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#6599#7233#0" expanded="true" />
-            <element signature="e#7222#7223#0" expanded="true" />
-            <element signature="method#onCreateOptionsMenu#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#8596#9699#0" expanded="true" />
-            <element signature="e#9680#9681#0" expanded="true" />
             <element signature="method#doInBackground#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#handleMessage#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
-            <element signature="e#12048#13263#0" expanded="true" />
-            <element signature="e#13248#13249#0" expanded="true" />
             <element signature="method#handleProposal#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#handleDecision#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
             <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#doInBackground#0;class#SendDecisionTask#0;class#GroupMessengerActivity#0" expanded="true" />
+            <element signature="method#doInBackground#0;class#SendMessageTask#0;class#GroupMessengerActivity#0" expanded="true" />
           </folding>
         </state>
       </provider>

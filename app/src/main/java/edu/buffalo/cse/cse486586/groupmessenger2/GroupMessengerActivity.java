@@ -101,7 +101,8 @@ public class GroupMessengerActivity extends Activity {
                         /* Adjust list if waiting for receipt from node */
                         if (msg.getRepliesReceived().size() == numLiveNodes) {
                             Log.d("Cleanup decide",msg.stringify());
-                            sendDecision(msg);
+                            new SendDecisionTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,msg);
+//                            sendDecision(msg);
                         }
                     }
                 }
@@ -224,7 +225,9 @@ public class GroupMessengerActivity extends Activity {
 
             for (int i=0; i<5;i++){
                 final String processId = Integer.toString(i);
-                sendMessage(Integer.parseInt(remotes[i]), msgObj.stringify());
+                new SendMessageTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,remotes[i],
+                        msgObj.stringify());
+//                sendMessage(Integer.parseInt(remotes[i]), msgObj.stringify());
 
                 Timer timer = new Timer();
                 timer.schedule(new TimerTask() {
@@ -263,7 +266,6 @@ public class GroupMessengerActivity extends Activity {
             while (true){
                 try{
                     Socket socket = serverSocket.accept();
-                    socket.setSoTimeout(1000);
                     InputStreamReader isw = new InputStreamReader(socket.getInputStream());
                     BufferedReader br = new BufferedReader(isw);
                     String msgStr = br.readLine();
@@ -331,7 +333,7 @@ public class GroupMessengerActivity extends Activity {
                         }
                     }
                 }
-            },8800);
+            },9500);
         }
 
         public synchronized void handleProposal(Message msgObj){
@@ -349,7 +351,8 @@ public class GroupMessengerActivity extends Activity {
                 ownObj.setMaxProp(propNum);
                 ownObj.setProposedBy(Integer.parseInt(proposal[1]));
             }
-            sendDecision(ownObj);
+            new SendDecisionTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,ownObj);
+//            sendDecision(ownObj);
         }
 
         public void handleDecision(Message msgObj){
@@ -397,6 +400,27 @@ public class GroupMessengerActivity extends Activity {
             writeToDisk(strReceived);
         }
 
+    }
+
+    private class SendDecisionTask extends AsyncTask<Message,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Message... params) {
+            Message decObj = params[0];
+            sendDecision(decObj);
+            return null;
+        }
+    }
+
+    private class SendMessageTask extends AsyncTask<String,Void,Void>{
+
+        @Override
+        protected Void doInBackground(String... params) {
+            int port = Integer.parseInt(params[0]);
+            String msgToSend = params[1];
+            sendMessage(port,msgToSend);
+            return null;
+        }
     }
 }
 
