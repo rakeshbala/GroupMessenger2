@@ -27,6 +27,29 @@ public class Message implements Comparable<Message>{
         this.repliesReceived = new HashSet<>();
     }
 
+    public Message(String serialString) {
+        String [] attribs = serialString.split(";");
+        this.messageId = Integer.parseInt(attribs[0]);
+        this.processId = Integer.parseInt(attribs[1]) ;
+        this.messageType = MessageType.valueOf(attribs[2]);
+        this.message = attribs[3];
+        this.deliver = false;
+        this.maxProp = 0;
+        this.proposedBy = 0;
+        this.repliesReceived = new HashSet<>();
+    }
+
+    public Message(int messageId, int processId, MessageType messageType, String message) {
+        this.messageId = messageId;
+        this.processId = processId;
+        this.messageType = messageType;
+        this.message = message;
+        this.deliver = false;
+        this.maxProp = 0;
+        this.proposedBy = 0;
+        this.repliesReceived = new HashSet<>();
+    }
+
     @Override
     public int compareTo(Message rhs) {
         if (this.getMaxProp() < rhs.getMaxProp()){
@@ -45,7 +68,7 @@ public class Message implements Comparable<Message>{
     }
 
     public enum MessageType {
-        MSG, PROPOSAL, DECISION, FAILED
+        MSG, PROPOSAL, DECISION
     }
 
     public int getMessageId() {
@@ -111,30 +134,6 @@ public class Message implements Comparable<Message>{
     public void setRepliesReceived(HashSet<String> repliesReceived) {
         this.repliesReceived = repliesReceived;
     }
-
-    public Message(String serialString) {
-        String [] attribs = serialString.split(";");
-        this.messageId = Integer.parseInt(attribs[0]);
-        this.processId = Integer.parseInt(attribs[1]) ;
-        this.messageType = MessageType.valueOf(attribs[2]);
-        this.message = attribs[3];
-        this.deliver = false;
-        this.maxProp = 0;
-        this.proposedBy = 0;
-        this.repliesReceived = new HashSet<>();
-    }
-
-    public Message(int messageId, int processId, MessageType messageType, String message) {
-        this.messageId = messageId;
-        this.processId = processId;
-        this.messageType = messageType;
-        this.message = message;
-        this.deliver = false;
-        this.maxProp = 0;
-        this.proposedBy = 0;
-        this.repliesReceived = new HashSet<>();
-    }
-
 
     public String stringify(){
         String stringRep = this.messageId+";"+
