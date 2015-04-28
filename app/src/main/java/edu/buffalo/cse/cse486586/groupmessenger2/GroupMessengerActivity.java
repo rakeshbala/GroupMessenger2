@@ -17,26 +17,22 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.ListIterator;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -58,8 +54,8 @@ public class GroupMessengerActivity extends Activity {
     private final Vector<Message> pList = new Vector<>();
     private String failTrack = null;
     private ReentrantLock lock = new ReentrantLock(true);
-    BlockingQueue bq = new LinkedBlockingQueue(10);
-    ThreadPoolExecutor bigPoolExecutor = new ThreadPoolExecutor(30, 128, 20, TimeUnit.SECONDS, bq);
+    BlockingQueue<Runnable> bq = new LinkedBlockingQueue<>(10);
+    ThreadPoolExecutor bigPoolExecutor = new ThreadPoolExecutor(15, 128, 20, TimeUnit.SECONDS, bq);
 
 
     public int idFromPort(int port) {
@@ -94,6 +90,12 @@ public class GroupMessengerActivity extends Activity {
     }
 
     public synchronized void cleanup(Message msgObj) {
+        if (failTrack != null){
+            return;
+        }
+        long now = System.currentTimeMillis();
+        while(System.currentTimeMillis() < now+1000){}
+
         Log.d("Cleanup", msgObj.stringify());
         numLiveNodes--;
         String failedNode = msgObj.getMessage();
@@ -102,19 +104,20 @@ public class GroupMessengerActivity extends Activity {
             Iterator<Message> iter = pList.iterator();
             while (iter.hasNext()) {
                 Message msg = iter.next();
-                /* Change affects only undeliverable messages*/
-                if (!msg.isDeliver()) {
-                    /* Remove the message if it is from the node */
-                    if (msg.getProcessId() == Integer.parseInt(failedNode)) {
-                        Log.d("Cleanup delete", msg.stringify());
-                        iter.remove();
-                    } else if (!(msg.getRepliesReceived().contains(failedNode))) {
+                /* Remove the message if it is from the node */
+                if ((msg.getProcessId() == Integer.parseInt(failedNode))
+                        && !msg.isDeliver()
+                        ) {
+                    Log.d("Cleanup delete", msg.stringify());
+                    iter.remove();
+                } else if (msg.getMessageId()==myId &&
+                        !(msg.getRepliesReceived().contains(failedNode))
+                        && !msg.isDeliver()) {
                         /* Adjust list if waiting for receipt from node */
-                        if (msg.getRepliesReceived().size() == numLiveNodes) {
-                            Log.d("Cleanup decide", msg.stringify());
+                    if (msg.getRepliesReceived().size() == numLiveNodes) {
+                        Log.d("Cleanup decide", msg.stringify());
 //                            new SendDecisionTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,msg);
-                            sendDecision(msg);
-                        }
+                        sendDecision(msg);
                     }
                 }
             }
@@ -134,13 +137,16 @@ public class GroupMessengerActivity extends Activity {
         }
         try {
             Socket socket = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}), port);
+            socket.setSoTimeout(4000);
+
             OutputStreamWriter osw = new OutputStreamWriter(socket.getOutputStream());
             BufferedWriter bw = new BufferedWriter(osw);
             bw.write(msgToSend);
             bw.newLine();
             bw.flush();
             if (idFromPort(port) != myId) {
-                new readAliveTask().executeOnExecutor(bigPoolExecutor, socket);
+                new readAliveTask().executeOnExecutor(bigPoolExecutor, socket,idFromPort(port),
+                        msgToSend);
             }
 
         } catch (IOException eio) {
@@ -180,9 +186,6 @@ public class GroupMessengerActivity extends Activity {
         myId = idFromPort(Integer.parseInt(myPort));
 
         final EditText editor = (EditText) findViewById(R.id.editText1);
-        final TextView myMsgTextView = (TextView) findViewById(R.id.textView1);
-
-
         /** Send on click **/
         findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +194,8 @@ public class GroupMessengerActivity extends Activity {
 
                 editor.setText("");
                 if (msg.length() > 0) {
-                    myMsgTextView.append("\t" + msg);
+                    TextView tv = (TextView) findViewById(R.id.textView1);
+                    tv.append("\t" + msg);
 
                     /** Create client task and send */
                     new ClientTask().executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, msg, myPort);
@@ -222,8 +226,6 @@ public class GroupMessengerActivity extends Activity {
         protected Void doInBackground(String... msgs) {
             String msgToSend = msgs[0];
             Message msgObj;
-            final int messageId;
-            final int msgProcessId;
             synchronized (this) {
                 msgObj = new Message(msgSq, myId, Message.MessageType.MSG, msgToSend);
                 msgSq++;
@@ -232,8 +234,6 @@ public class GroupMessengerActivity extends Activity {
             Log.d("Sending Msg", msgObj.stringify());
 
             for (int i = 0; i < 5; i++) {
-//                new SendMessageTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,remotes[i],
-//                        msgObj.stringify());
                 sendMessage(Integer.parseInt(remotes[i]), msgObj.stringify());
             }
             return null;
@@ -257,6 +257,7 @@ public class GroupMessengerActivity extends Activity {
                     Log.d("Server", msgStr);
                     Message msgObj = new Message(msgStr);
                     new writeAckTask().executeOnExecutor(bigPoolExecutor, socket);
+
                     lock.unlock();
                     switch (msgObj.getMessageType()) {
                         case MSG: {
@@ -278,6 +279,18 @@ public class GroupMessengerActivity extends Activity {
                     Log.d("Read-write messed up", e.getMessage());
                 } catch (IOException e) {
                     e.printStackTrace();
+                }
+                synchronized (pList){
+                    Collections.sort(pList);
+                    ListIterator<Message> iter = pList.listIterator();
+                    while (iter.hasNext()) {
+                        Message delivObj = iter.next();
+                        if (failTrack!=null) {
+                            if (delivObj.getProcessId() == Integer.parseInt(failTrack)) {
+                                iter.remove();
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -342,6 +355,8 @@ public class GroupMessengerActivity extends Activity {
             ownObj.setDeliver(true);
             lock.unlock();
 
+            Log.d("Message list",pList.toString());
+
             synchronized (pList) {
                 Collections.sort(pList);
                 ListIterator<Message> iter = pList.listIterator();
@@ -352,6 +367,13 @@ public class GroupMessengerActivity extends Activity {
                         iter.remove();
                         publishProgress(delivObj.getMessage());
                     } else {
+                        if (failTrack!=null){
+                            if (delivObj.getProcessId() == Integer.parseInt(failTrack)){
+                                iter.remove();
+                                continue;
+                            }
+
+                        }
                         break;
                     }
                 }
@@ -366,23 +388,37 @@ public class GroupMessengerActivity extends Activity {
 
     }
 
-    private class readAliveTask extends AsyncTask<Socket, Void, Void> {
+    private class readAliveTask extends AsyncTask<Object, Void, Void> {
 
         @Override
-        protected Void doInBackground(Socket... params) {
-            Socket socket = params[0];
+        protected Void doInBackground(Object... params) {
+            Socket socket = (Socket)params[0];
+            int pId = (int)params[1];
+            String msgToSend = (String)params[2];
 
             try {
-                InputStreamReader isw = new InputStreamReader(socket.getInputStream());
+                InputStream is = socket.getInputStream();
+                InputStreamReader isw = new InputStreamReader(is);
                 BufferedReader br = new BufferedReader(isw);
-                socket.setSoTimeout(5000);
                 String msg = br.readLine();
-                Log.d("Acknowledge", msg);
+                if(msg == null){
+                    Log.d("Fail",Integer.toString(pId));
+                    Message failMsg = new Message(msgToSend);
+                    failMsg.setMessage(Integer.toString(pId));
+                    cleanup(failMsg);
+                }
+                Log.d("Acknowledge", "Read");
                 socket.close();
             } catch (SocketTimeoutException soe) {
                 Log.d("Fail", "Timeout");
+                Message failMsg = new Message(msgToSend);
+                failMsg.setMessage(Integer.toString(pId));
+                cleanup(failMsg);
             } catch (IOException e) {
                 Log.d("Fail", e.getMessage());
+                Message failMsg = new Message(msgToSend);
+                failMsg.setMessage(Integer.toString(pId));
+                cleanup(failMsg);
             }
             return null;
         }
@@ -393,8 +429,6 @@ public class GroupMessengerActivity extends Activity {
         @Override
         protected Void doInBackground(Socket... params) {
             Socket socket = params[0];
-
-            String msg = null;
             try {
                 OutputStreamWriter isw = new OutputStreamWriter(socket.getOutputStream());
                 BufferedWriter bufferedWriter = new BufferedWriter(isw);

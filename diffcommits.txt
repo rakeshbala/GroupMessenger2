@@ -1,0 +1,600 @@
+diff --git a/.gradle/2.2.1/taskArtifacts/cache.properties.lock b/.gradle/2.2.1/taskArtifacts/cache.properties.lock
+index 6a00f41..b8c9fa4 100644
+Binary files a/.gradle/2.2.1/taskArtifacts/cache.properties.lock and b/.gradle/2.2.1/taskArtifacts/cache.properties.lock differ
+diff --git a/.gradle/2.2.1/taskArtifacts/fileHashes.bin b/.gradle/2.2.1/taskArtifacts/fileHashes.bin
+index 96df89f..8ae5062 100644
+Binary files a/.gradle/2.2.1/taskArtifacts/fileHashes.bin and b/.gradle/2.2.1/taskArtifacts/fileHashes.bin differ
+diff --git a/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin b/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin
+index 563ef22..4c81c8f 100644
+Binary files a/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin and b/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin differ
+diff --git a/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin b/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin
+index f5c2cda..2dc9b87 100644
+Binary files a/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin and b/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin differ
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+index 083479d..8b95ca5 100644
+--- a/.idea/workspace.xml
++++ b/.idea/workspace.xml
+@@ -43,11 +43,18 @@
+       <file leaf-file-name="GroupMessengerActivity.java" pinned="false" current="true" current-in-tab="true">
+         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="1.3242507" vertical-offset="3039" max-vertical-offset="4830">
+-              <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
++            <state vertical-scroll-proportion="0.20190024" vertical-offset="1955" max-vertical-offset="2640">
++              <caret line="286" column="23" selection-start-line="286" selection-start-column="23" selection-end-line="286" selection-end-column="23" />
+               <folding>
+                 <element signature="imports" expanded="true" />
+-                <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="false" />
++                <element signature="e#3715#4349#0" expanded="true" />
++                <element signature="e#4338#4339#0" expanded="true" />
++                <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
++                <element signature="e#5571#6053#0" expanded="true" />
++                <element signature="e#6034#6035#0" expanded="true" />
++                <element signature="method#sendProposed#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
++                <element signature="e#9839#10264#0" expanded="true" />
++                <element signature="e#10249#10250#0" expanded="true" />
+               </folding>
+             </state>
+           </provider>
+@@ -56,13 +63,9 @@
+       <file leaf-file-name="Message.java" pinned="false" current="false" current-in-tab="false">
+         <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/Message.java">
+           <provider selected="true" editor-type-id="text-editor">
+-            <state vertical-scroll-proportion="0.0" vertical-offset="1437" max-vertical-offset="1965">
+-              <caret line="134" column="47" selection-start-line="134" selection-start-column="47" selection-end-line="134" selection-end-column="47" />
+-              <folding>
+-                <element signature="imports" expanded="true" />
+-                <element signature="e#2391#2392#0" expanded="true" />
+-                <element signature="e#2429#2430#0" expanded="true" />
+-              </folding>
++            <state vertical-scroll-proportion="0.0" vertical-offset="705" max-vertical-offset="2385">
++              <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
++              <folding />
+             </state>
+           </provider>
+         </entry>
+@@ -1179,14 +1182,192 @@
+             <id />
+           </State>
+           <State>
++            <id>Abstraction issues</id>
++          </State>
++          <State>
++            <id>Android</id>
++          </State>
++          <State>
++            <id>Android Lint</id>
++          </State>
++          <State>
++            <id>Assignment issues</id>
++          </State>
++          <State>
++            <id>Class metrics</id>
++          </State>
++          <State>
++            <id>Class structure</id>
++          </State>
++          <State>
++            <id>Cloning issues</id>
++          </State>
++          <State>
++            <id>Code style issues</id>
++          </State>
++          <State>
++            <id>Concurrency annotation issues</id>
++          </State>
++          <State>
++            <id>Control FlowGroovy</id>
++          </State>
++          <State>
++            <id>Control flow issues</id>
++          </State>
++          <State>
++            <id>Data flow issues</id>
++          </State>
++          <State>
++            <id>Declaration redundancy</id>
++          </State>
++          <State>
++            <id>Declaration redundancyGroovy</id>
++          </State>
++          <State>
++            <id>DeclarationGroovy</id>
++          </State>
++          <State>
++            <id>Dependency issues</id>
++          </State>
++          <State>
++            <id>Encapsulation issues</id>
++          </State>
++          <State>
++            <id>Error handling</id>
++          </State>
++          <State>
++            <id>Error handlingGroovy</id>
++          </State>
++          <State>
++            <id>Finalization issues</id>
++          </State>
++          <State>
++            <id>General</id>
++          </State>
++          <State>
++            <id>Groovy</id>
++          </State>
++          <State>
++            <id>HTML</id>
++          </State>
++          <State>
++            <id>Imports</id>
++          </State>
++          <State>
++            <id>Inheritance issues</id>
++          </State>
++          <State>
++            <id>Initialization issues</id>
++          </State>
++          <State>
++            <id>Internationalization issues</id>
++          </State>
++          <State>
++            <id>J2ME issues</id>
++          </State>
++          <State>
++            <id>JUnit issues</id>
++          </State>
++          <State>
++            <id>Java language level issues</id>
++          </State>
++          <State>
++            <id>Java language level migration aids</id>
++          </State>
++          <State>
++            <id>JavaBeans issues</id>
++          </State>
++          <State>
++            <id>Javadoc issues</id>
++          </State>
++          <State>
++            <id>Logging issues</id>
++          </State>
++          <State>
++            <id>Manifest</id>
++          </State>
++          <State>
++            <id>Memory issues</id>
++          </State>
++          <State>
++            <id>Method MetricsGroovy</id>
++          </State>
++          <State>
++            <id>Method metrics</id>
++          </State>
++          <State>
++            <id>Modularization issues</id>
++          </State>
++          <State>
++            <id>Naming ConventionsGroovy</id>
++          </State>
++          <State>
++            <id>Naming conventions</id>
++          </State>
++          <State>
++            <id>Numeric issues</id>
++          </State>
++          <State>
++            <id>OtherGroovy</id>
++          </State>
++          <State>
++            <id>Packaging issues</id>
++          </State>
++          <State>
++            <id>Performance issues</id>
++          </State>
++          <State>
++            <id>Portability issues</id>
++          </State>
++          <State>
++            <id>Potentially confusing code constructsGroovy</id>
++          </State>
++          <State>
++            <id>Probable bugs</id>
++          </State>
++          <State>
++            <id>Probable bugsGroovy</id>
++          </State>
++          <State>
++            <id>Properties Files</id>
++          </State>
++          <State>
++            <id>RELAX NG</id>
++          </State>
++          <State>
++            <id>Resource management issues</id>
++          </State>
++          <State>
++            <id>Security issues</id>
++          </State>
++          <State>
++            <id>Serialization issues</id>
++          </State>
++          <State>
+             <id>Spelling</id>
+           </State>
+-        </expanded-state>
+-        <selected-state>
+           <State>
+-            <id>SpellCheckingInspection</id>
++            <id>TestNG</id>
++          </State>
++          <State>
++            <id>Threading issues</id>
++          </State>
++          <State>
++            <id>Threading issuesGroovy</id>
+           </State>
+-        </selected-state>
++          <State>
++            <id>Validity issuesGroovy</id>
++          </State>
++          <State>
++            <id>Visibility issues</id>
++          </State>
++          <State>
++            <id>XML</id>
++          </State>
++          <State>
++            <id>toString() issues</id>
++          </State>
++        </expanded-state>
+       </profile-state>
+     </entry>
+   </component>
+@@ -1216,8 +1397,8 @@
+       <sortByType />
+     </navigator>
+     <panes>
+-      <pane id="Scope" />
+       <pane id="ProjectPane" />
++      <pane id="PackagesPane" />
+       <pane id="AndroidView">
+         <subPane>
+           <PATH>
+@@ -1228,7 +1409,7 @@
+           </PATH>
+         </subPane>
+       </pane>
+-      <pane id="PackagesPane" />
++      <pane id="Scope" />
+     </panes>
+   </component>
+   <component name="PropertiesComponent">
+@@ -1238,16 +1419,16 @@
+     <property name="MemberChooser.sorted" value="false" />
+     <property name="MemberChooser.showClasses" value="true" />
+     <property name="MemberChooser.copyJavadoc" value="false" />
+-    <property name="options.lastSelected" value="Errors" />
++    <property name="options.lastSelected" value="editor.preferences.folding" />
+     <property name="options.splitter.main.proportions" value="0.3" />
+     <property name="options.splitter.details.proportions" value="0.2" />
+     <property name="options.searchVisible" value="true" />
+     <property name="recentsLimit" value="5" />
+     <property name="FullScreen" value="false" />
+-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554 emulator-5556 emulator-5558 emulator-5560 emulator-5562" />
++    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="emulator-5554 emulator-5556 emulator-5562 emulator-5558 emulator-5560" />
+     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+-    <property name="DEBUGGABLE_DEVICE" value="emulator-5554" />
++    <property name="DEBUGGABLE_DEVICE" value="avd4 [emulator-5562]" />
+     <property name="DEBUGGABLE_PROCESS" value="edu.buffalo.cse.cse486586.groupmessenger2" />
+     <property name="SHOW_ALL_PROCESSES" value="false" />
+     <property name="OverrideImplement.combined" value="true" />
+@@ -1449,7 +1630,7 @@
+       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956153" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40452617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
++      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3649222" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+@@ -1490,7 +1671,7 @@
+       <breakpoints-dialog>
+         <breakpoints-dialog />
+       </breakpoints-dialog>
+-      <option name="time" value="47" />
++      <option name="time" value="49" />
+     </breakpoint-manager>
+   </component>
+   <component name="editorHistoryManager">
+@@ -1508,7 +1689,14 @@
+           <caret line="26" column="54" selection-start-line="26" selection-start-column="54" selection-end-line="26" selection-end-column="54" />
+           <folding>
+             <element signature="imports" expanded="true" />
+-            <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="false" />
++            <element signature="e#3715#4349#0" expanded="true" />
++            <element signature="e#4338#4339#0" expanded="true" />
++            <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
++            <element signature="e#5571#6053#0" expanded="true" />
++            <element signature="e#6034#6035#0" expanded="true" />
++            <element signature="method#sendProposed#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
++            <element signature="e#9839#10264#0" expanded="true" />
++            <element signature="e#10249#10250#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+@@ -1543,7 +1731,14 @@
+           <caret line="20" column="43" selection-start-line="20" selection-start-column="43" selection-end-line="20" selection-end-column="43" />
+           <folding>
+             <element signature="imports" expanded="true" />
+-            <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="false" />
++            <element signature="e#3715#4349#0" expanded="true" />
++            <element signature="e#4338#4339#0" expanded="true" />
++            <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
++            <element signature="e#5571#6053#0" expanded="true" />
++            <element signature="e#6034#6035#0" expanded="true" />
++            <element signature="method#sendProposed#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
++            <element signature="e#9839#10264#0" expanded="true" />
++            <element signature="e#10249#10250#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+@@ -1744,14 +1939,14 @@
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_group_messenger.xml">
++      <provider editor-type-id="android-designer">
++        <state />
++      </provider>
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="-0.23287672" vertical-offset="153" max-vertical-offset="810">
+           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+         </state>
+       </provider>
+-      <provider editor-type-id="android-designer">
+-        <state />
+-      </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/build.gradle">
+       <provider selected="true" editor-type-id="text-editor">
+@@ -1774,14 +1969,6 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/OnPTestClickListener.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="2445">
+-          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+-          <folding />
+-        </state>
+-      </provider>
+-    </entry>
+     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-21/java/net/ServerSocket.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state vertical-scroll-proportion="0.295302" vertical-offset="1473" max-vertical-offset="6435">
+@@ -1881,23 +2068,34 @@
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/Message.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="0.0" vertical-offset="1437" max-vertical-offset="1965">
+-          <caret line="134" column="47" selection-start-line="134" selection-start-column="47" selection-end-line="134" selection-end-column="47" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-            <element signature="e#2391#2392#0" expanded="true" />
+-            <element signature="e#2429#2430#0" expanded="true" />
+-          </folding>
++        <state vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="1920">
++          <caret line="47" column="39" selection-start-line="47" selection-start-column="39" selection-end-line="47" selection-end-column="39" />
++          <folding />
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/OnPTestClickListener.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="2445">
++          <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
++          <folding />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state vertical-scroll-proportion="1.3242507" vertical-offset="3039" max-vertical-offset="4830">
+-          <caret line="240" column="0" selection-start-line="240" selection-start-column="0" selection-end-line="240" selection-end-column="0" />
++        <state vertical-scroll-proportion="0.20190024" vertical-offset="1955" max-vertical-offset="2640">
++          <caret line="286" column="23" selection-start-line="286" selection-start-column="23" selection-end-line="286" selection-end-column="23" />
+           <folding>
+             <element signature="imports" expanded="true" />
+-            <element signature="method#onProgressUpdate#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="false" />
++            <element signature="e#3715#4349#0" expanded="true" />
++            <element signature="e#4338#4339#0" expanded="true" />
++            <element signature="method#doInBackground#0;class#ClientTask#0;class#GroupMessengerActivity#0" expanded="true" />
++            <element signature="e#5571#6053#0" expanded="true" />
++            <element signature="e#6034#6035#0" expanded="true" />
++            <element signature="method#sendProposed#0;class#ServerTask#0;class#GroupMessengerActivity#0" expanded="true" />
++            <element signature="e#9839#10264#0" expanded="true" />
++            <element signature="e#10249#10250#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+diff --git a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$1.class b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$1.class
+index 9a824b8..d749b48 100644
+Binary files a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$1.class and b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$1.class differ
+diff --git a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$2.class b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$2.class
+index e7b3878..6a20b25 100644
+Binary files a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$2.class and b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$2.class differ
+diff --git a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ClientTask.class b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ClientTask.class
+index 833c81b..07fe048 100644
+Binary files a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ClientTask.class and b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ClientTask.class differ
+diff --git a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ServerTask.class b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ServerTask.class
+index 1483f34..7ff6382 100644
+Binary files a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ServerTask.class and b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity$ServerTask.class differ
+diff --git a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.class b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.class
+index fcb9d07..f76b44e 100644
+Binary files a/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.class and b/app/build/intermediates/classes/debug/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.class differ
+diff --git a/app/build/intermediates/dex/debug/classes.dex b/app/build/intermediates/dex/debug/classes.dex
+index 8cc09e9..0b98da2 100644
+Binary files a/app/build/intermediates/dex/debug/classes.dex and b/app/build/intermediates/dex/debug/classes.dex differ
+diff --git a/app/build/outputs/apk/app-debug-unaligned.apk b/app/build/outputs/apk/app-debug-unaligned.apk
+index 5db95ee..0b49b17 100644
+Binary files a/app/build/outputs/apk/app-debug-unaligned.apk and b/app/build/outputs/apk/app-debug-unaligned.apk differ
+diff --git a/app/build/outputs/apk/app-debug.apk b/app/build/outputs/apk/app-debug.apk
+index cd9fe42..6c8d864 100644
+Binary files a/app/build/outputs/apk/app-debug.apk and b/app/build/outputs/apk/app-debug.apk differ
+diff --git a/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java b/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java
+index 1f55077..f3cd805 100644
+--- a/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java
++++ b/app/src/main/java/edu/buffalo/cse/cse486586/groupmessenger2/GroupMessengerActivity.java
+@@ -26,6 +26,8 @@ import java.net.Socket;
+ import java.util.ArrayList;
+ import java.util.Collections;
+ import java.util.Iterator;
++import java.util.Timer;
++import java.util.TimerTask;
+ 
+ /**
+  * GroupMessengerActivity is the main Activity for the assignment.
+@@ -57,7 +59,6 @@ public class GroupMessengerActivity extends Activity {
+         }
+         try {
+             Socket socket = new Socket(InetAddress.getByAddress(new byte[]{10, 0, 2, 2}),port);
+-
+             OutputStream os = socket.getOutputStream();
+             OutputStreamWriter osw = new OutputStreamWriter(os);
+             BufferedWriter bw = new BufferedWriter(osw);
+@@ -66,18 +67,12 @@ public class GroupMessengerActivity extends Activity {
+             bw.flush();
+             socket.close();
+         }catch (IOException eio){
++            Message failMsg = new Message(-1,-1, Message.MessageType.FAILED,
++                    Integer.toString(idFromPort(port)));
++            sendMessage(Integer.parseInt(remotes[myId]),failMsg.stringify());
+             eio.printStackTrace();
+-        }
+-
+-    }
+-
+-
+-    private void sendFail(String failedNode){
+-        Message failMsg = new Message(-1,myId, Message.MessageType.FAILED,failedNode);
+-        for (int i=0;i<5;i++){
+-            /* failTrack not set yet . Don't send to failed node */
+-            if (i == Integer.parseInt(failedNode)) continue;
+-            sendMessage(Integer.parseInt(remotes[i]), failMsg.stringify());
++        }catch (Exception e){
++            e.printStackTrace();
+         }
+     }
+ 
+@@ -153,11 +148,27 @@ public class GroupMessengerActivity extends Activity {
+         @Override
+         protected Void doInBackground(String... msgs) {
+             String msgToSend = msgs[0];
+-            Message msgObj = new Message(msgSq, myId, Message.MessageType.MSG, msgToSend);
++            final Message msgObj = new Message(msgSq, myId, Message.MessageType.MSG, msgToSend);
+             pList.add(msgObj);
+             for (int i=0; i<5;i++){
++
++                final String processId = Integer.toString(i);
++//                if(failTrack!= null && processId.equals(failTrack)){
++//                    continue;
++//                }
+                 sendMessage(Integer.parseInt(remotes[i]),
+                         msgObj.stringify());
++                Timer timer = new Timer();
++                timer.schedule(new TimerTask() {
++                    @Override
++                    public void run() {
++                        if (!msgObj.getRepliesReceived().contains(processId)){
++                            Message failMsg = new Message(-1,-1, Message.MessageType.FAILED,processId);
++                            failTrack = processId;
++                            sendMessage(Integer.parseInt(remotes[myId]), failMsg.stringify());
++                        }
++                    }
++                },1500);
+             }
+             msgSq++;
+             return null;
+@@ -192,6 +203,9 @@ public class GroupMessengerActivity extends Activity {
+                             decideAndDeliver(msgObj);
+                             break;
+                         }
++                        case FAILED:{
++                            cleanup(msgObj);
++                        }
+                         default:
+                             break;
+                     }
+@@ -239,13 +253,7 @@ public class GroupMessengerActivity extends Activity {
+             }
+         }
+ 
+-        protected void onProgressUpdate(String...strings) {
+-            String strReceived = strings[0].trim();
+-            TextView remoteTextView = (TextView) findViewById(R.id.textView1);
+-            remoteTextView.append("\n\t\t\t\t"+strReceived + "\n");
+-            writeToDisk(strReceived);
+-        }
+-        public synchronized void sendProposed(Message msgObj){
++        public synchronized void sendProposed(final Message msgObj){
+             maxProp++;
+             Message ownObj = getMessageWithMessage(msgObj);
+             if (ownObj == null){
+@@ -256,11 +264,28 @@ public class GroupMessengerActivity extends Activity {
+             Message propMsg = new Message(msgObj.getMessageId(),
+                     msgObj.getProcessId(), Message.MessageType.PROPOSAL,
+                     proposalString);
+-            sendMessage(Integer.parseInt(remotes[msgObj.getProcessId()]),
+-                    propMsg.stringify());
++            final String processId = remotes[msgObj.getProcessId()];
++            sendMessage(Integer.parseInt(processId),propMsg.stringify());
++
++            Timer timer = new Timer();
++            timer.schedule(new TimerTask() {
++                @Override
++                public void run() {
++                    if (!msgObj.isDeliver() == false){
++                        Message failMsg = new Message(-1,-1, Message.MessageType.FAILED,processId);
++                        failTrack = processId;
++                        sendMessage(Integer.parseInt(remotes[myId]),failMsg.stringify());
++                    }
++                }
++            },1500);
+         }
++
+         public synchronized void sendDecided(Message msgObj){
++            Log.d("Hashset",Integer.toString(msgObj.getMessageId())+" "+Integer.toString(msgObj.getProcessId()));
+             Message ownObj = getMessageWithMessage(msgObj);
++            if (ownObj == null){
++                return;
++            }
+             String[] proposal = msgObj.getMessage().split("-");
+             ownObj.getRepliesReceived().add(proposal[1]);
+ 
+@@ -281,6 +306,7 @@ public class GroupMessengerActivity extends Activity {
+                 }
+             }
+         }
++
+         public synchronized void decideAndDeliver(Message msgObj){
+             String[] decisionStr = msgObj.getMessage().split("-");
+             int maxPropDec = Integer.parseInt(decisionStr[0]);
+@@ -316,9 +342,17 @@ public class GroupMessengerActivity extends Activity {
+             ContentValues contentValues = new ContentValues();
+             contentValues.put("key",String.valueOf(counter));
+             contentValues.put("value",strReceived);
+-            getContentResolver().insert(uri,contentValues);
++            getContentResolver().insert(uri, contentValues);
+             counter++;
+         }
++
++        protected void onProgressUpdate(String...strings) {
++            String strReceived = strings[0].trim();
++            TextView remoteTextView = (TextView) findViewById(R.id.textView1);
++            remoteTextView.append("\n\t\t\t\t"+strReceived + "\n");
++            writeToDisk(strReceived);
++        }
++
+     }
+ 
+ 
